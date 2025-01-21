@@ -664,3 +664,30 @@ function createPullingTimeline(isFixed, BtnPulled) {
 
     return tl;
 }
+// Get references to the form elements
+const nameField = document.getElementById('name');
+const emailField = document.getElementById('email');
+const checkbox = document.getElementById('subscribe');
+
+// Disable email and checkbox initially
+emailField.setAttribute('disabled', true);
+checkbox.setAttribute('disabled', true);
+
+// Enable email when name is filled
+nameField.addEventListener('input', () => {
+  if (nameField.value.trim() !== '') {
+    emailField.removeAttribute('disabled');
+  } else {
+    emailField.setAttribute('disabled', true);
+    checkbox.setAttribute('disabled', true); // Reset the chain
+  }
+});
+
+// Enable checkbox when email is filled
+emailField.addEventListener('input', () => {
+  if (emailField.value.trim() !== '') {
+    checkbox.removeAttribute('disabled');
+  } else {
+    checkbox.setAttribute('disabled', true);
+  }
+});
